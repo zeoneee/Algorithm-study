@@ -7,6 +7,7 @@ string = []
 for _ in range(n):
     string.append(input())
 
+# 길이 만큼 정렬
 string_sorted = sorted(string,key=lambda x:len(x),reverse=True)
 
 # 길이 체크 -> 맞게 출력됨 
