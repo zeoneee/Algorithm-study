@@ -1,12 +1,11 @@
 import sys
-import numpy as np
 
 n = int(sys.stdin.readline())
 string = []
 string_sorted = []
 alphabet_num = {}
 num = 9
-
+    
 # 단어 입력받기
 for _ in range(n):
     string.append(sys.stdin.readline().rstrip())
@@ -24,8 +23,9 @@ for i in range(n):
 for i in alphabet_num.values():
     string_sorted.append(i)
 
-# 자릿수 높은 순으로 정렬
+# 자릿수 높은 순으로 정렬  
 string_sorted.sort(reverse=True)
+
 
 # 단어의 합 출력 
 num_sum = 0
@@ -35,4 +35,6 @@ for i in string_sorted:
 
 # 결과 출력 
 print(num_sum)
+
+mat = [list(map(int,list(input()))) for _ in range(n)] # n,m 모양 행렬 한번에 받는 코드
 
