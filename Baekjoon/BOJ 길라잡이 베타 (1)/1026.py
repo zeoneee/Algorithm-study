@@ -11,3 +11,5 @@ for i in range(n):
   sum += a[i]*b.pop(b.index(max(b)))  
 
 print(sum)
+
+
