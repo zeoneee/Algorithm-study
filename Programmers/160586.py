@@ -41,3 +41,8 @@ def solution(keymap, targets):
                 
         
     return answer
+
+
+# 알파벳별 최소 클릭 횟수 먼저 계산한 후 target마다 눌러야 하는 횟수 계산
+# 중첩 for문 안에 break 빼먹어서 한 번 틀림.
+# from string import ascii_uppercase: 알파벳 대문자 리스트 
