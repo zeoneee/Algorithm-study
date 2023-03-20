@@ -1,14 +1,10 @@
 def solution(numbers):
-    answer = []
-        
+    answer = [-1] * len(numbers)
+    stack = [] # numbers의 index를 저장
+    
     for i in range(len(numbers)):
-        test = 0
-        for j in range(i+1,len(numbers)):
-            if numbers[j] > numbers[i]:
-                answer.append(numbers[j])
-                test=1
-                break
-        if test==0:
-            answer.append(-1)
+        while stack and numbers[stack[-1]] < numbers[i]:
+            answer[stack.pop()] = numbers[i]
+        stack.append(i)
     
     return answer
