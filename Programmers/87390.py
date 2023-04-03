@@ -1,18 +1,9 @@
+# 1차원 배열 줄 세워서 인덱스랑 값 비교해보기
+
 def solution(n, left, right):
     answer = []
-    arr = [[0 for j in range(n)] for i in range(n)]
-    
-    # arr 초기화
-    for i in range(n):
-        for j in range(i):
-            arr[j][i] = i+1
-            arr[i][j] = i+1
-        arr[i][i] = i+1
-    
-    # 1차원 배열 만들기
-    for a in arr:
-        answer += a
-    
-    answer = answer[left:right+1]
-    
+    for idx in range(left,right+1):
+        x = idx // n
+        y = idx % n
+        answer.append(max(x,y)+1)
     return answer
