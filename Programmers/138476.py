@@ -1,20 +1,11 @@
+import collections
+
 def solution(k, tangerine):
-    answer = 0
-    t_size = [0]*max(tangerine)
-    
-    for t in tangerine:
-        t_size[t-1] += 1
-    
-    t_size.sort(reverse=True)
-    
-    tangerines = 0
-    for s in t_size:
-        if tangerines < k:
-            tangerines += s
-            answer += 1
-        else:
-            break
-    
-    return answer
+    size = collections.Counter(tangerine)
 
+    total = 0
+    for i,v in enumerate(sorted(size.values(), reverse=True)):
+        total += v
+        if total >= k: return i+1
 
+# collections 모듈의 Counter 함수 사용하여 더 간단하게 해결
