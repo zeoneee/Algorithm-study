@@ -1,14 +1,9 @@
 def solution(food):
     answer = ''
-    for i in range(1,len(food)):
-        answer += str(i)*(food[i]//2)
     
-    temp = list(answer)
-    temp.sort(reverse=True)
+    for i, v in enumerate(food[1:]):
+        answer += str(i+1)*(v//2)
     
-    answer += '0'
-    
-    for s in temp:
-        answer += s
-    
-    return answer
+    return answer + '0' + answer[::-1]
+
+# 기존 코드보다 더 간단하게 solved
