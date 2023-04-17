@@ -11,15 +11,16 @@ def solution(citations):
             
     # dictionary 정렬 후 검사
     citation_dict = dict(sorted(citation_dict.items(),reverse=True))
+    print(citation_dict)
 
     # i 이상 value값의 합이 i이상이면 return
-    for i in citation_dict:
+    for i in citation_dict: 
         sum_of_values = 0
-        for key, value in citation_dict.items():
+        for key, value in citation_dict.items(): 
             if key >= i:
                 sum_of_values += value
             
-        if sum_of_values > i:
-            return i+1
-    
+        if sum_of_values >= i:
+            return i
+
     return answer
