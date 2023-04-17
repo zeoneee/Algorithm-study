@@ -1,15 +1,17 @@
-# 한번에 최대 두명씩
-# 작은애들부터 채우고, i와 i+1번째가 같이 못타게 된 시점부터 한명씩 태우기
+# deque 이용한 풀이
+from collections import deque
 
 def solution(people, limit):
     answer = 0
-    people.sort()
+    people.sort()   
+    pp = deque(people)
     
-    for i in range(0,len(people)-1,2):
-        if people[i]+people[i+1] <= limit:
-            answer += 1
-        else:
-            answer += len(people)-i
-            return answer
+    while len(pp) > 1:
+        if pp[0]+pp[-1] <= limit: 
+            pp.popleft()
+        pp.pop() # 위 조건을 만족하던지 말던지 end값은 pop
+        answer += 1
+    if pp: # 1만 남아있을 수도 있으니까
+        answer += 1
 
     return answer
