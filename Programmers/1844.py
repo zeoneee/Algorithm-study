@@ -1,9 +1,9 @@
-# 기존 코드에서 조건 부분 너무 긴 것 같아서 if 0<=nx<=4 and 0<=ny<=4 and maps[nx][ny] == 1: 한 줄로 줄임
-# 코드 자체는 바뀐게 없어서 런타임 에러 뜸
+# 문제 조건이 nxm 행렬 ..
 
 from collections import deque 
 
 def solution(maps):
+    n, m = len(maps), len(maps[0])
         
     # 이동할 네 방향 정의
     dx = [-1,1,0,0]
@@ -21,13 +21,13 @@ def solution(maps):
                 nx = x + dx[i]
                 ny = y + dy[i]
                 
-                if 0<=nx<=4 and 0<=ny<=4 and maps[nx][ny] == 1:
+                if 0<=nx<n and 0<=ny<m and maps[nx][ny] == 1:
                     # 해당 노드를 처음 방문하는 경우에만 최단 거리 기록
                     if maps[nx][ny] == 1:
                         maps[nx][ny] = maps[x][y] + 1
-                        queue.append((nx,ny)) # -> 여기서 queue로 돌아가서 반복 
+                        queue.append((nx,ny))
         # 가장 오른쪽 아래까지의 최단 거리 반환
-        return maps[4][4] 
+        return maps[n-1][m-1] 
     
     answer = bfs(0,0)
     return answer if answer > 1 else -1
