@@ -1,6 +1,8 @@
 # 입력을 graph 형식으로 받으면 바로 넣으면 됨
 # edge형태로 넣으면 graph로 변환해야함. 
 
+import sys
+sys.setrecursionlimit(100000) # 백준 runtime error 방지 코드. 
 from collections import deque
 
 def dfs(graph, v, visited):
@@ -11,7 +13,6 @@ def dfs(graph, v, visited):
         # 현재 노드와 연결된 다른 노드를 재귀적으로 방문
         for i in graph[v]: # graph[v]가 [v]랑 연결된 다른 노드들 
             dfs(graph, i, visited)
-
 
 queue = deque()
 
@@ -31,23 +32,21 @@ def main():
     n,m,v = map(int,input().split())
     visited_d = [False]*(n+1)
     visited_b = [False]*(n+1)
-    graph_d = [[] for _ in range(n+1)] 
-    graph_b = [[] for _ in range(n+1)] 
+    graph = [[] for _ in range(n+1)] 
 
     for _ in range(m):
         a,b = map(int,input().split())
-        graph_d[a].append(b)
-        graph_d[b].append(a)
-        graph_b[a].append(b)
-        graph_b[b].append(a)
+        graph[a].append(b)
+        graph[b].append(a)
+        graph[a].sort() # append 하자마자 정렬
+        graph[b].sort()
 
-    dfs(graph_d, v, visited_d)
+    dfs(graph, v, visited_d)
     print()
-    bfs(graph_b, v, visited_b)
+    bfs(graph, v, visited_b)
 
 
 if __name__ == "__main__":
     main()
- 
 
 
