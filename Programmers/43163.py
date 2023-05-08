@@ -15,4 +15,4 @@ def solution(begin, target, words):
 # 규진 코드: stack에 visit 해야할 tuple들을 넣은 후 visit 할 때마다 pop. 
 # depth는 cnt 변수를 이용하여 계산함. 
 # stack.pop(0)을 하는 이유는 depth 계산을 중복해서 하지 않기 위해 
-#   → 더 자세하게 숙지하기 
+#   → 더 자세하게 숙지하기
