@@ -16,6 +16,7 @@ def solution(n, computers):
     visited = [False]*n
     
     for i in range(n):
-        answer += dfs(visited,i,computers)
+        if (dfs(visited,i,computers) != 0):
+            answer += 1
     
     return answer
