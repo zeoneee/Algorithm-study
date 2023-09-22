@@ -2,7 +2,7 @@
 # edge형태로 넣으면 graph로 변환해야함. 
 
 import sys
-sys.setrecursionlimit(100000) # 백준 runtime error 방지 코드. 
+sys.setrecursionlimit(100000) # 백준 runtime error 방지
 from collections import deque
 
 def dfs(graph, v, visited):
