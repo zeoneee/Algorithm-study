@@ -1,38 +1,27 @@
-# 1. 연결 되어 있는 노드끼리 연결, 길이 갱신해서 비교
-#     - 하나만 있는 경우 하나 추가하면됨
-# 2. 둘다 리스트에 있을 경우 길이 비교해서 min값 찾기
-# 3. 둘다 없을 경우 추가
-
 def solution(n, costs):
-    costs.sort()
-    visited = []
+    answer = 0
     
-    for cost in costs:
-        if len(visited) == 0:
-            visited.append([cost[0],cost[1]]) # 연결 노드
-            visited.append([cost[2]]) # 연결 노드의 cost
+    # union & find 자료구조
+    parents = [i for i in range(n)]
+    
+    def find(n): # 최상위 노드 찾기
+        if parents[n] == n:
+            return n
+        return find(parents[n])
         
-        for i in range(0,len(visited),2):
-            if cost[0] in visited[i] and cost[1] in visited[i]:
-                # 둘다 있을 때
-                if sum(visited[i+1]) > cost[2]:
-                    visited.append([cost[0],cost[1]])
-                    visited.append([cost[2]])
-            elif cost[0] in visited[i] or cost[1] in visited[i]:
-                # 하나만 있을 때
-                if cost[0] in visited[i]:
-                    visited[i].append(cost[1])
-                else:
-                    visited[i].append(cost[0])
-                visited[i+1].append(cost[2])
-            else:
-                # 둘다 없을 때
-                visited.append([cost[0],cost[1]]) # 연결 노드
-                visited.append([cost[2]]) # 연결 노드의 cost
+    def union(a,b):
+        a = find(a)
+        b = find(b)
     
-    mincost = 10000
-    for i in range(1,len(visited),2):
-        if mincost > sum(visited[i]):
-            mincost = sum(visited[i])
+        if a != b:
+            parents[a] = b # 서로 다른 두 집합 노드 합치기(루트 노드를 합치면서)
+            
+    # 최소신장트리
+    costs.sort(key=lambda x:x[2])
+    for a,b,c in costs:
+        # 두 노드가 같은 부모를 가졌는지 확인, 가지지 않았다면 서로소 집합
+        if find(a) != find(b):
+            union(a,b)
+            answer += c
     
-    return mincost 
+    return answer
